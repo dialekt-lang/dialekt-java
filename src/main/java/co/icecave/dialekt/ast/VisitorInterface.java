@@ -33,26 +33,26 @@ public interface VisitorInterface<R>
      */
     public R visit(Tag node);
 
-    // /**
-    //  * Visit a pattern node.
-    //  *
-    //  * @param node The node to visit.
-    //  */
-    // public R visit(Pattern node);
+    /**
+     * Visit a pattern node.
+     *
+     * @param node The node to visit.
+     */
+    public R visit(Pattern node);
 
-    // /**
-    //  * Visit a PatternLiteral node.
-    //  *
-    //  * @param node The node to visit.
-    //  */
-    // public R visit(PatternLiteral node);
+    /**
+     * Visit a PatternLiteral node.
+     *
+     * @param node The node to visit.
+     */
+    public R visit(PatternLiteral node);
 
-    // /**
-    //  * Visit a PatternWildcard node.
-    //  *
-    //  * @param node The node to visit.
-    //  */
-    // public R visit(PatternWildcard node);
+    /**
+     * Visit a PatternWildcard node.
+     *
+     * @param node The node to visit.
+     */
+    public R visit(PatternWildcard node);
 
     /**
      * Visit a EmptyExpression node.

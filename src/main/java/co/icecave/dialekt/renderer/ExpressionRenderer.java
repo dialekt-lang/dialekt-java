@@ -5,8 +5,13 @@ import co.icecave.dialekt.ast.ExpressionInterface;
 import co.icecave.dialekt.ast.LogicalAnd;
 import co.icecave.dialekt.ast.LogicalNot;
 import co.icecave.dialekt.ast.LogicalOr;
+import co.icecave.dialekt.ast.Pattern;
+import co.icecave.dialekt.ast.PatternChildInterface;
+import co.icecave.dialekt.ast.PatternLiteral;
+import co.icecave.dialekt.ast.PatternWildcard;
 import co.icecave.dialekt.ast.Tag;
 import co.icecave.dialekt.ast.VisitorInterface;
+import co.icecave.dialekt.renderer.exception.RenderException;
 import java.util.List;
 
 /**
@@ -79,35 +84,53 @@ public class ExpressionRenderer implements VisitorInterface<String>
         return this.escapeString(node.name());
     }
 
-    // /**
-    //  * Visit a pattern node.
-    //  *
-    //  * @param node The node to visit.
-    //  */
-    // public String visit(Pattern node)
-    // {
-    //     return "";
-    // }
+    /**
+     * Visit a pattern node.
+     *
+     * @param node The node to visit.
+     */
+    public String visit(Pattern node)
+    {
+        String string = "";
 
-    // /**
-    //  * Visit a PatternLiteral node.
-    //  *
-    //  * @param node The node to visit.
-    //  */
-    // public String visit(PatternLiteral node)
-    // {
-    //     return "";
-    // }
+        for (PatternChildInterface n : node.children()) {
+            string += n.accept(this);
+        }
 
-    // /**
-    //  * Visit a PatternWildcard node.
-    //  *
-    //  * @param node The node to visit.
-    //  */
-    // public String visit(PatternWildcard node)
-    // {
-    //     return "";
-    // }
+        return this.escapeString(string);
+    }
+
+    /**
+     * Visit a PatternLiteral node.
+     *
+     * @param node The node to visit.
+     *
+     * @throws RenderException if the literal string contains the wildcard character.
+     */
+    public String visit(PatternLiteral node)
+    {
+        if (node.string().contains(this.wildcardString)) {
+            throw new RenderException(
+                String.format(
+                    "The pattern literal \"%s\" contains the wildcard string \"%s\".",
+                    node.string(),
+                    this.wildcardString
+                )
+            );
+        }
+
+        return node.string();
+    }
+
+    /**
+     * Visit a PatternWildcard node.
+     *
+     * @param node The node to visit.
+     */
+    public String visit(PatternWildcard node)
+    {
+        return this.wildcardString;
+    }
 
     /**
      * Visit a EmptyExpression node.
