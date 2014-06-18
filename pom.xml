@@ -1,0 +1,85 @@
+<project>
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>co.icecave</groupId>
+    <artifactId>dialekt</artifactId>
+    <version>0.1.0</version>
+    <packaging>jar</packaging>
+
+    <name>Dialekt</name>
+    <description>Simple, strong encryption.</description>
+    <url>https://github.com/eloquent/lockbox-java</url>
+
+    <developers>
+        <developer>
+            <name>James Harris</name>
+            <email>james.harris@icecave.com.au</email>
+            <url>https://github.com/jmalloc/</url>
+        </developer>
+    </developers>
+    <licenses>
+        <license>
+            <name>MIT</name>
+            <url>https://raw.github.com/IcecaveStudios/dialekt-java/master/LICENSE</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+    <scm>
+        <url>https://github.com/IcecaveStudios/dialekt-java</url>
+        <connection>git@github.com:IcecaveStudios/dialekt-java.git</connection>
+    </scm>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+            <version>6.8.5</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-all</artifactId>
+            <version>1.9.5</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.1</version>
+                <configuration>
+                    <source>1.5</source>
+                    <target>1.5</target>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>0.6.3.201306030806</version>
+                <executions>
+                    <execution>
+                        <id>prepare-agent</id>
+                        <goals>
+                            <goal>prepare-agent</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.eluder.coveralls</groupId>
+                <artifactId>coveralls-maven-plugin</artifactId>
+                <version>2.0.0</version>
+            </plugin>
+        </plugins>
+    </build>
+</project>
