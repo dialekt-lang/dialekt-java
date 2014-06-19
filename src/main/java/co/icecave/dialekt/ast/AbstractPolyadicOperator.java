@@ -1,5 +1,6 @@
 package co.icecave.dialekt.ast;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -13,7 +14,9 @@ public abstract class AbstractPolyadicOperator implements ExpressionInterface
      */
     public AbstractPolyadicOperator(ExpressionInterface... children)
     {
-        this.children = Arrays.asList(children);
+        this.children = new ArrayList<ExpressionInterface>(
+            Arrays.asList(children)
+        );
     }
 
     /**
@@ -31,10 +34,10 @@ public abstract class AbstractPolyadicOperator implements ExpressionInterface
      *
      * @return The operator's child expressions.
      */
-    public List<ExpressionInterface> children()
+    public ArrayList<ExpressionInterface> children()
     {
         return this.children;
     }
 
-    private List<ExpressionInterface> children;
+    private ArrayList<ExpressionInterface> children;
 }

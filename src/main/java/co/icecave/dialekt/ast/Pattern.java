@@ -1,7 +1,7 @@
 package co.icecave.dialekt.ast;
 
 import java.util.Arrays;
-import java.util.List;
+import java.util.ArrayList;
 
 /**
  * An AST node that represents a pattern-match expression.
@@ -13,7 +13,9 @@ public class Pattern implements ExpressionInterface
      */
     public Pattern(PatternChildInterface... children)
     {
-        this.children = Arrays.asList(children);
+        this.children = new ArrayList<PatternChildInterface>(
+            Arrays.asList(children)
+        );
     }
 
 
@@ -32,7 +34,7 @@ public class Pattern implements ExpressionInterface
      *
      * @return The node's children.
      */
-    public List<PatternChildInterface> children()
+    public ArrayList<PatternChildInterface> children()
     {
         return this.children;
     }
@@ -49,5 +51,5 @@ public class Pattern implements ExpressionInterface
         return visitor.visit(this);
     }
 
-    private List<PatternChildInterface> children;
+    private ArrayList<PatternChildInterface> children;
 }
