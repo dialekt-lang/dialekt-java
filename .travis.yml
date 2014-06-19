@@ -10,7 +10,7 @@ env:
     global:
         - DIALEKT_PUBLISH_VERSION=openjdk7
         - DIALEKT_PUBLISH_BRANCH=develop
-        - secure: nn8cGhLEc5aHWu3rtlxy/6O83+PaiWzPVtBNCz/CJC0c9TDFJ1Dmysicx8Mf+H6iAu8wqhWg4P3tTARtm+Za34UKyXBql7RFf0FI2NjjElzSSLuY2COIp5To1emufNarHWPINwXMpLBPwnNanMX8xpCOiOhXLzjwQcnBlY9ODvA=
+        - secure: FLS0PZ3QNCYAKAbvSCqOVjX3gPv1JIX3cVGNZM9kJtRrtBwh/ruSWlgRD/yHx+NGmAgL4lctAGk+TUvNly36FplYuBKUHbtCn67dzPu8NVj+pIwFpVpWkQYDRk22H3jBFSttHwFHaaQ0htJlEJCr0D/XugypG3/sflMtO1XOQpM=
 
 install: ./travis/install.sh
 script: ./travis/build.sh

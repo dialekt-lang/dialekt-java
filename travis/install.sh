@@ -7,7 +7,7 @@ if [ "openjdk7" == $TRAVIS_JDK_VERSION ]; then
 fi
 
 # install the tools required to publish build artifacts
-if [ "$TRAVIS_JDK_VERSION" == "$DIALEKT_PUBLISH_VERSION" ] && [ "$DIALEKT_PUBLISH_BRANCH" == "$TRAVIS_BRANCH" ] && [ "" != "$WOODHOUSE_TOKEN" ]; then
+if [ $TRAVIS_JDK_VERSION == $DIALEKT_PUBLISH_VERSION ] && [ $TRAVIS_BRANCH == $DIALEKT_PUBLISH_BRANCH ] && [ "true" == $TRAVIS_SECURE_ENV_VARS ]; then
     echo 'Installing PHP ...'
     sudo apt-get update -qq
     sudo apt-get install -qq php5-cli
