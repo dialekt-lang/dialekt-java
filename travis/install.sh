@@ -7,10 +7,12 @@ if [ "openjdk7" == $TRAVIS_JDK_VERSION ]; then
 fi
 
 # install the tools required to publish build artifacts
-if [ $TRAVIS_JDK_VERSION == $DIALEKT_PUBLISH_VERSION ] && [ "develop" == $TRAVIS_BRANCH ] && [ "" != $WOODHOUSE_TOKEN ]; then
-    export DIALEKT_PUBLISH="true"
+if [ "$TRAVIS_JDK_VERSION" == "$DIALEKT_PUBLISH_VERSION" ] && [ "$DIALEKT_PUBLISH_BRANCH" == "$TRAVIS_BRANCH" ] && [ "" != "$WOODHOUSE_TOKEN" ]; then
+    echo 'Installing PHP ...'
     sudo apt-get update -qq
     sudo apt-get install -qq php5-cli
+
+    echo 'Installing Woodhouse ...'
     wget http://icecavestudios.github.io/woodhouse/woodhouse
     chmod +x ./woodhouse
 fi
