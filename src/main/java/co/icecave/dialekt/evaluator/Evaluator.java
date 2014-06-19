@@ -155,11 +155,16 @@ public class Evaluator implements EvaluatorInterface, VisitorInterface<Expressio
      */
     public ExpressionResult visit(Tag node)
     {
+        if (this.caseSensitive) {
+            return this.matchTags(
+                node,
+                new CaseSensitiveTagMatcher(node)
+            );
+        }
+
         return this.matchTags(
             node,
-            this.caseSensitive
-                ? new CaseSensitiveTagMatcher(node)
-                : new CaseInsensitiveTagMatcher(node)
+            new CaseInsensitiveTagMatcher(node)
         );
     }
 
@@ -170,11 +175,16 @@ public class Evaluator implements EvaluatorInterface, VisitorInterface<Expressio
      */
     public ExpressionResult visit(Pattern node)
     {
+        if (this.caseSensitive) {
+            return this.matchTags(
+                node,
+                new CaseSensitivePatternMatcher(node)
+            );
+        }
+
         return this.matchTags(
             node,
-            this.caseSensitive
-                ? new CaseSensitivePatternMatcher(node)
-                : new CaseInsensitivePatternMatcher(node)
+            new CaseInsensitivePatternMatcher(node)
         );
     }
 
@@ -205,11 +215,20 @@ public class Evaluator implements EvaluatorInterface, VisitorInterface<Expressio
      */
     public ExpressionResult visit(EmptyExpression node)
     {
+        if (this.emptyIsWildcard) {
+            return this.createExpressionResult(
+                node,
+                true,
+                this.tags,
+                Collections.EMPTY_SET
+            );
+        }
+
         return this.createExpressionResult(
             node,
-            this.emptyIsWildcard,
-            this.emptyIsWildcard ? this.tags : Collections.EMPTY_SET,
-            this.emptyIsWildcard ? Collections.EMPTY_SET : this.tags
+            false,
+            Collections.EMPTY_SET,
+            this.tags
         );
     }
 

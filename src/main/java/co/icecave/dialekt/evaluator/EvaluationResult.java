@@ -40,9 +40,15 @@ public class EvaluationResult
      *
      * @return The result for the given expression.
      */
-    public ExpressionResult resultOf(ExpressionInterface expression)
+    public ExpressionResult resultOf(ExpressionInterface expression) throws IndexOutOfBoundsException
     {
-        return this.expressionResults.get(expression);
+        ExpressionResult result = this.expressionResults.get(expression);
+
+        if (null == result) {
+            throw new IndexOutOfBoundsException();
+        }
+
+        return result;
     }
 
     private boolean isMatch;

@@ -2,17 +2,19 @@ package co.icecave.dialekt.evaluator;
 
 import co.icecave.dialekt.ast.Pattern;
 
-class CaseInsensitivePatternMatcher implements TagMatcherInterface
+class CaseInsensitivePatternMatcher extends AbstractPatternMatcher
 {
     public CaseInsensitivePatternMatcher(Pattern pattern)
     {
-        this.pattern = pattern;
+        super(pattern);
     }
 
-    public boolean match(String tag)
+    @Override
+    protected java.util.regex.Pattern compilePattern(String pattern)
     {
-        return false;
+        return java.util.regex.Pattern.compile(
+            pattern,
+            java.util.regex.Pattern.CASE_INSENSITIVE
+        );
     }
-
-    private Pattern pattern;
 }
