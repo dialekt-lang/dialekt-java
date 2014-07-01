@@ -30,6 +30,24 @@ public class Token
         this.columnNumber = columnNumber;
     }
 
+    public boolean equals(Object obj)
+    {
+        if (this == obj) {
+            return true;
+        } else if (!(obj instanceof Token)) {
+            return false;
+        }
+
+        Token token = (Token)obj;
+
+        return this.type == token.type
+            && this.value.equals(token.value)
+            && this.startOffset == token.startOffset
+            && this.endOffset == token.endOffset
+            && this.lineNumber == token.lineNumber
+            && this.columnNumber == token.columnNumber;
+    }
+
     public static String typeDescription(Type type)
     {
         switch (type) {
