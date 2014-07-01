@@ -6,7 +6,7 @@ import java.util.ArrayList;
 /**
  * An AST node that represents a pattern-match expression.
  */
-public class Pattern implements ExpressionInterface
+public class Pattern extends AbstractExpression
 {
     /**
      * @param child,... One or more children to add to this operator.

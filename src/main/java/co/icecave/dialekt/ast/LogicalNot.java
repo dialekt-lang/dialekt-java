@@ -3,7 +3,7 @@ package co.icecave.dialekt.ast;
 /**
  * An AST node that represents the logical NOT operator.
  */
-public class LogicalNot implements ExpressionInterface
+public class LogicalNot extends AbstractExpression
 {
     /**
      * @param child The expression being inverted by the NOT operator.

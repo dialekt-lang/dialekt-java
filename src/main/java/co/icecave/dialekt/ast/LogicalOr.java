@@ -3,7 +3,7 @@ package co.icecave.dialekt.ast;
 /**
  * An AST node that represents the logical OR operator.
  */
-public class LogicalOr extends AbstractPolyadicOperator
+public class LogicalOr extends AbstractPolyadicExpression
 {
     /**
      * @param child,... One or more children to add to this operator.

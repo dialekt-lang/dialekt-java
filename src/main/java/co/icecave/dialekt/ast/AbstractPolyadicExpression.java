@@ -7,12 +7,12 @@ import java.util.List;
 /**
  * A base class providing common functionality for polyadic operators.
  */
-public abstract class AbstractPolyadicOperator implements ExpressionInterface
+public abstract class AbstractPolyadicExpression extends AbstractExpression
 {
     /**
      * @param child,... One or more children to add to this operator.
      */
-    public AbstractPolyadicOperator(ExpressionInterface... children)
+    public AbstractPolyadicExpression(ExpressionInterface... children)
     {
         this.children = new ArrayList<ExpressionInterface>(
             Arrays.asList(children)

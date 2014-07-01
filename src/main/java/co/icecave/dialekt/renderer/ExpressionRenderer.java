@@ -17,7 +17,7 @@ import java.util.List;
 /**
  * Interface for node visitors.
  */
-public class ExpressionRenderer implements VisitorInterface<String>
+public class ExpressionRenderer implements RendererInterface, VisitorInterface<String>
 {
     public ExpressionRenderer()
     {
@@ -47,6 +47,8 @@ public class ExpressionRenderer implements VisitorInterface<String>
     /**
      * Visit a LogicalAnd node.
      *
+     * @internal
+     *
      * @param node The node to visit.
      */
     public String visit(LogicalAnd node)
@@ -56,6 +58,8 @@ public class ExpressionRenderer implements VisitorInterface<String>
 
     /**
      * Visit a LogicalOr node.
+     *
+     * @internal
      *
      * @param node The node to visit.
      */
@@ -67,6 +71,8 @@ public class ExpressionRenderer implements VisitorInterface<String>
     /**
      * Visit a LogicalNot node.
      *
+     * @internal
+     *
      * @param node The node to visit.
      */
     public String visit(LogicalNot node)
@@ -77,6 +83,8 @@ public class ExpressionRenderer implements VisitorInterface<String>
     /**
      * Visit a Tag node.
      *
+     * @internal
+     *
      * @param node The node to visit.
      */
     public String visit(Tag node)
@@ -86,6 +94,8 @@ public class ExpressionRenderer implements VisitorInterface<String>
 
     /**
      * Visit a pattern node.
+     *
+     * @internal
      *
      * @param node The node to visit.
      */
@@ -102,6 +112,8 @@ public class ExpressionRenderer implements VisitorInterface<String>
 
     /**
      * Visit a PatternLiteral node.
+     *
+     * @internal
      *
      * @param node The node to visit.
      *
@@ -125,6 +137,8 @@ public class ExpressionRenderer implements VisitorInterface<String>
     /**
      * Visit a PatternWildcard node.
      *
+     * @internal
+     *
      * @param node The node to visit.
      */
     public String visit(PatternWildcard node)
@@ -134,6 +148,8 @@ public class ExpressionRenderer implements VisitorInterface<String>
 
     /**
      * Visit a EmptyExpression node.
+     *
+     * @internal
      *
      * @param node The node to visit.
      */

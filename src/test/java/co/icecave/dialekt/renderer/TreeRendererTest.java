@@ -14,11 +14,31 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import org.testng.Assert;
 
-public class ExpressionRendererTest
+public class TreeRendererTest
 {
-    public ExpressionRendererTest() throws Throwable
+    public TreeRendererTest() throws Throwable
     {
-        this.renderer = new ExpressionRenderer();
+        this.renderer = new TreeRenderer("\r\n");
+    }
+
+    @Test
+    public void testConstructor()
+    {
+        Assert.assertEquals(
+            this.renderer.endOfLine(),
+            "\r\n"
+        );
+    }
+
+    @Test
+    public void testConstructorDefaults()
+    {
+        TreeRenderer renderer = new TreeRenderer();
+
+        Assert.assertEquals(
+            renderer.endOfLine(),
+            "\n"
+        );
     }
 
     @Test(dataProvider = "renderTestVectors")
@@ -29,80 +49,55 @@ public class ExpressionRendererTest
         Assert.assertEquals(string, expectedString);
     }
 
-
-    @Test(
-        expectedExceptions = RenderException.class,
-        expectedExceptionsMessageRegExp = "The pattern literal \"foo\\*\" contains the wildcard string \"\\*\"."
-    )
-    public void testRenderFailureWithWildcardInPatternLiteral()
-    {
-        this.renderer.render(
-            new Pattern(
-                new PatternLiteral("foo*")
-            )
-        );
-    }
-
-    @Test(
-        expectedExceptions = RenderException.class,
-        expectedExceptionsMessageRegExp = "The pattern literal \"foo%\" contains the wildcard string \"%\"."
-    )
-    public void testRenderWithDifferentWildcardString()
-    {
-        ExpressionRenderer renderer = new ExpressionRenderer("%");
-
-        renderer.render(
-            new Pattern(
-                new PatternLiteral("foo%")
-            )
-        );
-    }
-
     @DataProvider(name = "renderTestVectors")
     public Object[][] renderTestVectors()
     {
         return new Object[][] {
             {
                 new EmptyExpression(),
-                "NOT *",
+                "EMPTY",
             },
             {
                 new Tag("foo"),
-                "foo",
+                "TAG \"foo\"",
             },
             {
                 new Tag("f\\o\"o"),
-                "\"f\\\\o\\\"o\"",
+                "TAG \"f\\\\o\\\"o\"",
             },
             {
                 new Tag("and"),
-                "\"and\"",
+                "TAG \"and\"",
             },
             {
                 new Tag("or"),
-                "\"or\"",
+                "TAG \"or\"",
             },
             {
                 new Tag("not"),
-                "\"not\"",
+                "TAG \"not\"",
             },
             {
                 new Tag("foo bar"),
-                "\"foo bar\"",
+                "TAG \"foo bar\"",
             },
             {
                 new Pattern(
                     new PatternLiteral("foo"),
                     new PatternWildcard()
                 ),
-                "foo*",
+                "PATTERN\r\n" +
+                "  - LITERAL \"foo\"\r\n" +
+                "  - WILDCARD",
             },
             {
                 new Pattern(
                     new PatternLiteral("foo\""),
                     new PatternWildcard()
                 ),
-                "\"foo\\\"*\"",
+                "PATTERN\r\n" +
+                "  - LITERAL \"foo\\\"\"\r\n" +
+                "  - WILDCARD",
             },
             {
                 new LogicalAnd(
@@ -110,7 +105,10 @@ public class ExpressionRendererTest
                     new Tag("b"),
                     new Tag("c")
                 ),
-                "(a AND b AND c)",
+                "AND\r\n" +
+                "  - TAG \"a\"\r\n" +
+                "  - TAG \"b\"\r\n" +
+                "  - TAG \"c\"",
             },
             {
                 new LogicalOr(
@@ -118,16 +116,20 @@ public class ExpressionRendererTest
                     new Tag("b"),
                     new Tag("c")
                 ),
-                "(a OR b OR c)",
+                "OR\r\n" +
+                "  - TAG \"a\"\r\n" +
+                "  - TAG \"b\"\r\n" +
+                "  - TAG \"c\"",
             },
             {
                 new LogicalNot(
                     new Tag("a")
                 ),
-                "NOT a",
+                "NOT\r\n" +
+                "  - TAG \"a\"",
             },
         };
     }
 
-    private ExpressionRenderer renderer;
+    private TreeRenderer renderer;
 }

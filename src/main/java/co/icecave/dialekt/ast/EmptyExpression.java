@@ -3,7 +3,7 @@ package co.icecave.dialekt.ast;
 /**
  * An AST node that represents the logical OR operator.
  */
-public class EmptyExpression implements ExpressionInterface
+public class EmptyExpression extends AbstractExpression
 {
     /**
      * Pass this node to the appropriate method on the given visitor.

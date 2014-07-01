@@ -3,7 +3,7 @@ package co.icecave.dialekt.ast;
 /**
  * An AST node that represents a literal tag expression.
  */
-public class Tag implements ExpressionInterface
+public class Tag extends AbstractExpression
 {
     /**
      * @param name The tag name.
