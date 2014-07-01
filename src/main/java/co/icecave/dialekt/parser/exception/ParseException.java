@@ -1,11 +1,11 @@
-package co.icecave.dialekt.renderer.exception;
+package co.icecave.dialekt.parser.exception;
 
-public class RenderException extends RuntimeException
+public class ParseException extends RuntimeException
 {
     /**
      * @param message The message.
      */
-    public RenderException(String message)
+    public ParseException(String message)
     {
         super(message, null);
     }
@@ -14,7 +14,7 @@ public class RenderException extends RuntimeException
      * @param message The message.
      * @param cause   The cause.
      */
-    public RenderException(String message, Throwable cause)
+    public ParseException(String message, Throwable cause)
     {
         super(message, cause);
     }
