@@ -1,4 +1,5 @@
 co.icecave.dialekt.ast
 co.icecave.dialekt.evaluator
+co.icecave.dialekt.parser
 co.icecave.dialekt.renderer
 co.icecave.dialekt.renderer.exception
