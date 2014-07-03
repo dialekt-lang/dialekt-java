@@ -22,4 +22,13 @@ public interface ExpressionInterface extends NodeInterface
      * @return The last token from this expression.
      */
     public Token lastToken();
+
+    /**
+     * Pass this node to the appropriate method on the given visitor.
+     *
+     * @param VisitorInterface $visitor The visitor to dispatch to.
+     *
+     * @return mixed The visitation result.
+     */
+    public <R> R accept(ExpressionVisitorInterface<R> visitor);
 }

@@ -2,20 +2,25 @@ package co.icecave.dialekt.evaluator;
 
 import co.icecave.dialekt.ast.EmptyExpression;
 import co.icecave.dialekt.ast.ExpressionInterface;
+import co.icecave.dialekt.ast.ExpressionVisitorInterface;
 import co.icecave.dialekt.ast.LogicalAnd;
 import co.icecave.dialekt.ast.LogicalNot;
 import co.icecave.dialekt.ast.LogicalOr;
 import co.icecave.dialekt.ast.Pattern;
+import co.icecave.dialekt.ast.PatternChildInterface;
+import co.icecave.dialekt.ast.PatternChildVisitorInterface;
 import co.icecave.dialekt.ast.PatternLiteral;
 import co.icecave.dialekt.ast.PatternWildcard;
 import co.icecave.dialekt.ast.Tag;
-import co.icecave.dialekt.ast.VisitorInterface;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
-public class Evaluator implements EvaluatorInterface, VisitorInterface<ExpressionResult>
+public class Evaluator implements
+    EvaluatorInterface,
+    ExpressionVisitorInterface<ExpressionResult>,
+    PatternChildVisitorInterface<String>
 {
     public Evaluator()
     {
@@ -65,7 +70,6 @@ public class Evaluator implements EvaluatorInterface, VisitorInterface<Expressio
 
         return result;
     }
-
 
     /**
      * Visit a LogicalAnd node.
@@ -155,16 +159,11 @@ public class Evaluator implements EvaluatorInterface, VisitorInterface<Expressio
      */
     public ExpressionResult visit(Tag node)
     {
-        if (this.caseSensitive) {
-            return this.matchTags(
-                node,
-                new CaseSensitiveTagMatcher(node)
-            );
-        }
-
         return this.matchTags(
             node,
-            new CaseInsensitiveTagMatcher(node)
+            this.caseSensitive
+                ? new CaseSensitiveTagMatcher(node)
+                : new CaseInsensitiveTagMatcher(node)
         );
     }
 
@@ -175,37 +174,23 @@ public class Evaluator implements EvaluatorInterface, VisitorInterface<Expressio
      */
     public ExpressionResult visit(Pattern node)
     {
-        if (this.caseSensitive) {
-            return this.matchTags(
-                node,
-                new CaseSensitivePatternMatcher(node)
-            );
+        String stringPattern = "^";
+        for (PatternChildInterface child : node.children()) {
+            stringPattern += child.accept(this);
         }
+        stringPattern += "$";
 
         return this.matchTags(
             node,
-            new CaseInsensitivePatternMatcher(node)
+            new PatternMatcher(
+                java.util.regex.Pattern.compile(
+                    stringPattern,
+                    this.caseSensitive
+                        ? 0
+                        : java.util.regex.Pattern.CASE_INSENSITIVE
+                )
+            )
         );
-    }
-
-    /**
-     * Visit a PatternLiteral node.
-     *
-     * @param node The node to visit.
-     */
-    public ExpressionResult visit(PatternLiteral node)
-    {
-        throw new UnsupportedOperationException();
-    }
-
-    /**
-     * Visit a PatternWildcard node.
-     *
-     * @param node The node to visit.
-     */
-    public ExpressionResult visit(PatternWildcard node)
-    {
-        throw new UnsupportedOperationException();
     }
 
     /**
@@ -232,6 +217,25 @@ public class Evaluator implements EvaluatorInterface, VisitorInterface<Expressio
         );
     }
 
+    /**
+     * Visit a PatternLiteral node.
+     *
+     * @param node The node to visit.
+     */
+    public String visit(PatternLiteral node)
+    {
+        return java.util.regex.Pattern.quote(node.string());
+    }
+
+    /**
+     * Visit a PatternWildcard node.
+     *
+     * @param node The node to visit.
+     */
+    public String visit(PatternWildcard node)
+    {
+        return ".*";
+    }
 
     private ExpressionResult matchTags(
         ExpressionInterface expression,

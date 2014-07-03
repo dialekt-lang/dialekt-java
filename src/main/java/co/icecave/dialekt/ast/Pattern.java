@@ -18,7 +18,6 @@ public class Pattern extends AbstractExpression
         );
     }
 
-
     /**
      * Add a child to this node.
      *
@@ -47,6 +46,18 @@ public class Pattern extends AbstractExpression
      * @return mixed The visitation result.
      */
     public <R> R accept(VisitorInterface<R> visitor)
+    {
+        return visitor.visit(this);
+    }
+
+    /**
+     * Pass this node to the appropriate method on the given visitor.
+     *
+     * @param VisitorInterface $visitor The visitor to dispatch to.
+     *
+     * @return mixed The visitation result.
+     */
+    public <R> R accept(ExpressionVisitorInterface<R> visitor)
     {
         return visitor.visit(this);
     }
