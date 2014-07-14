@@ -20,7 +20,7 @@ public interface ParserInterface
      * Parse an expression using a specific lexer.
      *
      * @param expression The expression to parse.
-     * @param lexer      The lexer to use to tokenise the string, or null to use the default.
+     * @param lexer      The lexer to use to tokenise the string.
      *
      * @return The parsed expression.
      * @throws ParseException if the expression is invalid.

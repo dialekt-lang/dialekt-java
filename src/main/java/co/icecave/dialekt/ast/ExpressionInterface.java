@@ -24,6 +24,14 @@ public interface ExpressionInterface extends NodeInterface
     public Token lastToken();
 
     /**
+     * Set the delimiting tokens for this expression.
+     *
+     * @param firstToken The first token from this expression.
+     * @param lastToken  The last token from this expression.
+     */
+    public void setTokens(Token firstToken, Token lastToken);
+
+    /**
      * Pass this node to the appropriate method on the given visitor.
      *
      * @param VisitorInterface $visitor The visitor to dispatch to.
