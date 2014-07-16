@@ -16,7 +16,7 @@ import org.testng.Assert;
 
 public class ExpressionRendererTest
 {
-    public ExpressionRendererTest() throws Throwable
+    public ExpressionRendererTest()
     {
         this.renderer = new ExpressionRenderer();
     }

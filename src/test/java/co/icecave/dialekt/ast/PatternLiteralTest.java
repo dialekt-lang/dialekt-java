@@ -6,7 +6,7 @@ import org.testng.Assert;
 
 public class PatternLiteralTest
 {
-    public PatternLiteralTest() throws Throwable
+    public PatternLiteralTest()
     {
         this.node = new PatternLiteral("foo");
     }

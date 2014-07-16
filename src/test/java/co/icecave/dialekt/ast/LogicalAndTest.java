@@ -7,7 +7,7 @@ import org.testng.Assert;
 
 public class LogicalAndTest
 {
-    public LogicalAndTest() throws Throwable
+    public LogicalAndTest()
     {
         this.child1 = new Tag("a");
         this.child2 = new Tag("b");

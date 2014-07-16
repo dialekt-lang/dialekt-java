@@ -6,7 +6,7 @@ import org.testng.Assert;
 
 public class EmptyExpressionTest
 {
-    public EmptyExpressionTest() throws Throwable
+    public EmptyExpressionTest()
     {
         this.expression = new EmptyExpression();
     }

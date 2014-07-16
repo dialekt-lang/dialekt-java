@@ -16,7 +16,7 @@ import org.testng.Assert;
 
 public class TreeRendererTest
 {
-    public TreeRendererTest() throws Throwable
+    public TreeRendererTest()
     {
         this.renderer = new TreeRenderer("\r\n");
     }

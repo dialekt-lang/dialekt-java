@@ -6,7 +6,7 @@ import org.testng.Assert;
 
 public class LogicalNotTest
 {
-    public LogicalNotTest() throws Throwable
+    public LogicalNotTest()
     {
         this.child = new Tag("foo");
         this.expression = new LogicalNot(this.child);

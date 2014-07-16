@@ -6,7 +6,7 @@ import org.testng.Assert;
 
 public class TagTest
 {
-    public TagTest() throws Throwable
+    public TagTest()
     {
         this.expression = new Tag("foo");
     }

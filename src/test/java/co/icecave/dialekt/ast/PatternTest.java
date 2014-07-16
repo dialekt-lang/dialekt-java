@@ -7,7 +7,7 @@ import org.testng.Assert;
 
 public class PatternTest
 {
-    public PatternTest() throws Throwable
+    public PatternTest()
     {
         this.child1 = new PatternLiteral("foo");
         this.child2 = new PatternWildcard();

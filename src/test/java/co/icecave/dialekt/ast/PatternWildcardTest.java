@@ -6,7 +6,7 @@ import org.testng.Assert;
 
 public class PatternWildcardTest
 {
-    public PatternWildcardTest() throws Throwable
+    public PatternWildcardTest()
     {
         this.node = new PatternWildcard();
     }
