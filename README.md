@@ -12,6 +12,6 @@
 This is a Java port of the [original PHP package](https://github.com/IcecaveStudios/dialekt).
 
 <!-- references -->
-[Build Status]: http://img.shields.io/travis/IcecaveStudios/dialekt-java/develop.svg
-[Test Coverage]: http://img.shields.io/coveralls/IcecaveStudios/dialekt-java/develop.svg
-[SemVer]: http://img.shields.io/:semver-0.0.0-red.svg
+[Build Status]: http://img.shields.io/travis/IcecaveStudios/dialekt-java/develop.svg?style=flat-square
+[Test Coverage]: http://img.shields.io/coveralls/IcecaveStudios/dialekt-java/develop.svg?style=flat-square
+[SemVer]: http://img.shields.io/:semver-0.0.0-red.svg?style=flat-square
