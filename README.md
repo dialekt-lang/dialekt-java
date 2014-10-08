@@ -11,6 +11,12 @@
 
 This is a Java port of the [original PHP package](https://github.com/IcecaveStudios/dialekt).
 
+## Contact us
+
+* Follow [@IcecaveStudios](https://twitter.com/IcecaveStudios) on Twitter
+* Visit the [Icecave Studios website](http://icecave.com.au)
+* Join `#icecave` on [irc.freenode.net](http://webchat.freenode.net?channels=icecave)
+
 <!-- references -->
 [Build Status]: http://img.shields.io/travis/IcecaveStudios/dialekt-java/develop.svg?style=flat-square
 [Test Coverage]: http://img.shields.io/coveralls/IcecaveStudios/dialekt-java/develop.svg?style=flat-square
